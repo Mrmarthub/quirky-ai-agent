@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Quirky AI Project of the Day</title>
+  <style>
+    body { font-family: sans-serif; padding: 2em; background: #fafafa; }
+    .card { background: white; padding: 2em; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); max-width: 600px; margin: auto; }
+    h1 { font-size: 1.5em; }
+    a { color: #0070f3; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="card" id="project"></div>
+  <script>
+    fetch('../data/quirky_projects.json')
+      .then(res => res.json())
+      .then(data => {
+        const random = data[Math.floor(Math.random() * data.length)];
+        document.getElementById('project').innerHTML = `
+          <h1>${random.title}</h1>
+          <p><strong>Quirkiness:</strong> ${random.quirky_score}/10</p>
+          <p>${random.description}</p>
+          <p><a href="${random.url}" target="_blank">Visit site</a></p>
+        `;
+      });
+  </script>
+</body>
+</html>
